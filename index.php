@@ -51,7 +51,9 @@ if(isset($_GET['keyword']) && trim($_GET['keyword']) != ""){
 
 <style>
 
-/* RESET */
+/* =========================
+   RESET
+========================= */
 *{
     margin:0;
     padding:0;
@@ -59,21 +61,28 @@ if(isset($_GET['keyword']) && trim($_GET['keyword']) != ""){
     font-family:'Poppins',sans-serif;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     background:
-    linear-gradient(to bottom,#f7f3ee,#f3eee7);
+    linear-gradient(135deg,#fff8f2,#f8f4ee,#fff);
 
     min-height:100vh;
     color:#333;
+    overflow-x:hidden;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 .header{
 
     background:
-    linear-gradient(45deg,#ee4d2d,#ff7337);
+    linear-gradient(135deg,#ee4d2d,#ff784e,#ff5e62);
 
-    padding:15px 40px;
+    padding:16px 40px;
 
     display:flex;
     justify-content:space-between;
@@ -86,37 +95,46 @@ body{
     top:0;
     z-index:999;
 
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.08);
 }
 
 .logo{
-    font-size:30px;
+    font-size:32px;
     font-weight:700;
     color:#fff;
 }
 
-/* SEARCH */
+/* =========================
+   SEARCH
+========================= */
 .search-box{
 
     display:flex;
 
-    width:40%;
+    width:42%;
     min-width:260px;
 
     background:#fff;
-    border-radius:12px;
+
+    border-radius:16px;
 
     overflow:hidden;
+
+    box-shadow:
+    0 6px 18px rgba(0,0,0,0.08);
 }
 
 .search-box input{
 
     flex:1;
+
     border:none;
 
-    padding:12px 14px;
+    padding:14px 16px;
 
     outline:none;
+
     font-size:14px;
 }
 
@@ -125,13 +143,25 @@ body{
     width:70px;
 
     border:none;
-    background:#fb5533;
+
+    background:
+    linear-gradient(135deg,#ff5722,#ff784e);
 
     color:#fff;
+
     cursor:pointer;
+
+    transition:0.3s;
 }
 
-/* MENU */
+.search-box button:hover{
+
+    transform:scale(1.05);
+}
+
+/* =========================
+   MENU
+========================= */
 .menu{
     display:flex;
     align-items:center;
@@ -142,15 +172,15 @@ body{
 .menu a,
 .user-name{
 
-    height:40px;
+    height:42px;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    padding:0 14px;
+    padding:0 16px;
 
-    border-radius:10px;
+    border-radius:14px;
 
     font-size:14px;
     font-weight:600;
@@ -158,137 +188,209 @@ body{
     color:#fff;
     text-decoration:none;
 
-    transition:0.25s;
+    transition:0.3s;
 }
 
 .menu a:hover{
-    transform:translateY(-2px);
+
+    transform:
+    translateY(-3px);
 }
 
 .menu a:not(.cart-menu):not(.login-btn):not(.register-btn):not(.logout-btn):not(.admin-btn){
-    background:rgba(255,255,255,0.12);
+
+    background:
+    rgba(255,255,255,0.14);
 }
 
 .cart-menu{
+
     background:#fff;
+
     color:#ee4d2d !important;
+
+    box-shadow:
+    0 8px 18px rgba(255,255,255,0.2);
 }
 
 .user-name{
-    background:rgba(255,255,255,0.12);
+
+    background:
+    rgba(255,255,255,0.15);
 }
 
 .login-btn{
-    background:rgba(255,255,255,0.15);
+
+    background:
+    rgba(255,255,255,0.14);
 }
 
 .register-btn{
+
     background:#fff;
+
     color:#ee4d2d !important;
 }
 
 .logout-btn{
-    background:rgba(0,0,0,0.15);
+
+    background:
+    rgba(0,0,0,0.15);
 }
 
 .admin-btn{
-    background:rgba(0,0,0,0.12);
+
+    background:
+    linear-gradient(135deg,#333,#444);
 }
 
-/* BANNER */
+/* =========================
+   BANNER
+========================= */
 .banner{
 
     width:95%;
-    max-width:1200px;
+    max-width:1280px;
 
-    margin:20px auto;
+    margin:28px auto;
 
-    padding:24px;
+    padding:38px;
 
-    border-radius:18px;
+    border-radius:28px;
 
     display:flex;
     justify-content:space-between;
     align-items:center;
+
+    position:relative;
+
+    overflow:hidden;
 
     background:
     linear-gradient(135deg,#ff3d00,#ff006a,#ff8c00);
 
     color:#fff;
 
-    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    box-shadow:
+    0 18px 40px rgba(255,61,0,0.25);
+}
+
+.banner::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:350px;
+    height:350px;
+
+    background:
+    rgba(255,255,255,0.1);
+
+    border-radius:50%;
+
+    top:-100px;
+    right:-80px;
 }
 
 .badge{
 
     display:inline-block;
 
-    background:#000;
+    background:#111;
 
-    padding:5px 12px;
+    padding:6px 14px;
 
-    border-radius:20px;
+    border-radius:30px;
 
     font-size:12px;
 
-    margin-bottom:10px;
+    margin-bottom:15px;
+}
+
+.banner-left{
+
+    position:relative;
+    z-index:2;
 }
 
 .banner-left h2{
-    font-size:30px;
-    margin-bottom:10px;
+
+    font-size:42px;
+
+    margin-bottom:12px;
 }
 
 .banner-left p{
-    opacity:0.9;
-    max-width:450px;
+
+    opacity:0.95;
+
+    max-width:500px;
+
+    line-height:1.7;
 }
 
 .banner-btn{
 
     display:inline-block;
 
-    margin-top:15px;
+    margin-top:20px;
 
     background:#fff;
+
     color:#ff3d00;
 
-    padding:12px 16px;
+    padding:14px 22px;
 
-    border-radius:12px;
+    border-radius:16px;
 
     text-decoration:none;
-    font-weight:600;
+    font-weight:700;
+
+    transition:0.3s;
 }
 
-/* PRODUCTS */
+.banner-btn:hover{
+
+    transform:
+    translateY(-4px);
+
+    box-shadow:
+    0 12px 25px rgba(255,255,255,0.25);
+}
+
+/* =========================
+   PRODUCTS
+========================= */
 .container{
 
     width:95%;
+    max-width:1280px;
+
     margin:auto;
 
     display:grid;
 
     grid-template-columns:
-    repeat(auto-fill,minmax(230px,1fr));
+    repeat(auto-fill,minmax(260px,1fr));
 
-    gap:20px;
+    gap:26px;
 
-    padding:20px 0 40px;
+    padding:20px 0 50px;
 }
 
 .product{
 
     background:#fff;
 
-    border-radius:18px;
+    border-radius:24px;
 
     overflow:hidden;
 
     box-shadow:
-    0 4px 12px rgba(0,0,0,0.08);
+    0 10px 25px rgba(0,0,0,0.06);
 
-    transition:0.3s;
+    transition:0.35s;
 
     position:relative;
 }
@@ -296,82 +398,101 @@ body{
 .product:hover{
 
     transform:
-    translateY(-8px)
+    translateY(-10px)
     scale(1.02);
 
     box-shadow:
-    0 12px 30px rgba(0,0,0,0.15);
+    0 18px 40px rgba(0,0,0,0.15);
 }
 
 .product img{
 
     width:100%;
-    height:230px;
+    height:250px;
 
     object-fit:cover;
+
+    transition:0.5s;
 }
 
-/* BADGE */
+.product:hover img{
+
+    transform:scale(1.08);
+}
+
+/* =========================
+   HOT BADGE
+========================= */
 .hot-badge{
 
     position:absolute;
 
-    top:12px;
-    left:12px;
+    top:14px;
+    left:14px;
 
-    background:#ff0033;
+    background:
+    linear-gradient(135deg,#ff0033,#ff4d6d);
+
     color:#fff;
 
-    padding:5px 10px;
+    padding:6px 12px;
 
-    border-radius:20px;
+    border-radius:30px;
 
     font-size:12px;
-    font-weight:600;
+    font-weight:700;
 
     z-index:2;
 }
 
-/* PRODUCT INFO */
+/* =========================
+   PRODUCT INFO
+========================= */
 .product-info{
-    padding:14px;
+    padding:18px;
 }
 
 .product-name{
 
-    font-size:15px;
+    font-size:16px;
     font-weight:600;
 
-    min-height:45px;
+    min-height:50px;
 
-    color:#333;
+    color:#222;
+
+    line-height:1.5;
 }
 
 .product-price{
 
-    margin-top:8px;
+    margin-top:10px;
 
     color:#ee4d2d;
 
-    font-size:22px;
+    font-size:28px;
     font-weight:700;
 }
 
 .product-meta{
 
-    margin-top:6px;
+    margin-top:8px;
 
     font-size:13px;
     color:#777;
+
+    line-height:1.6;
 }
 
-/* BUTTONS */
+/* =========================
+   BUTTONS
+========================= */
 .product-btns{
 
     display:flex;
-    gap:10px;
+    gap:12px;
 
-    padding:14px;
+    padding:0 18px 18px;
 }
 
 .cart-btn,
@@ -379,16 +500,18 @@ body{
 
     flex:1;
 
-    height:44px;
+    height:48px;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    border-radius:12px;
+    border-radius:14px;
 
     text-decoration:none;
     font-weight:600;
+
+    transition:0.3s;
 }
 
 .cart-btn{
@@ -397,68 +520,113 @@ body{
 
     color:#ee4d2d;
 
-    border:1px solid rgba(238,77,45,0.3);
+    border:
+    1px solid rgba(238,77,45,0.25);
+}
+
+.cart-btn:hover{
+
+    background:#fff3ef;
+
+    transform:translateY(-3px);
 }
 
 .buy-btn{
 
     background:
-    linear-gradient(45deg,#ee4d2d,#ff7337);
+    linear-gradient(135deg,#ee4d2d,#ff7337);
 
     color:#fff;
+
+    box-shadow:
+    0 10px 20px rgba(238,77,45,0.25);
 }
 
-/* TOAST */
+.buy-btn:hover{
+
+    transform:
+    translateY(-3px)
+    scale(1.03);
+}
+
+/* =========================
+   TOAST
+========================= */
 .toast{
 
     position:fixed;
 
-    bottom:20px;
-    right:20px;
+    bottom:25px;
+    right:25px;
 
-    background:#222;
+    background:
+    linear-gradient(135deg,#111,#333);
+
     color:#fff;
 
-    padding:12px 18px;
+    padding:14px 20px;
 
-    border-radius:12px;
+    border-radius:16px;
 
     opacity:0;
-    transition:0.3s;
+
+    transform:
+    translateY(30px);
+
+    transition:0.35s;
+
+    z-index:9999;
 }
 
 .toast.show{
+
     opacity:1;
+
+    transform:
+    translateY(0);
 }
 
-/* EMPTY */
+/* =========================
+   EMPTY
+========================= */
 .empty{
 
     width:100%;
+
     text-align:center;
 
-    padding:40px;
+    padding:60px;
 
     background:#fff;
 
-    border-radius:15px;
+    border-radius:25px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.06);
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 .footer{
 
-    margin-top:40px;
+    margin-top:50px;
 
-    background:#222;
+    background:
+    linear-gradient(135deg,#1a1a1a,#2d2d2d);
 
     color:#fff;
 
     text-align:center;
 
-    padding:20px;
+    padding:28px;
+
+    line-height:1.8;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 @media(max-width:768px){
 
     .search-box{
@@ -478,6 +646,20 @@ body{
     .banner{
         flex-direction:column;
         text-align:center;
+        padding:28px;
+    }
+
+    .banner-left h2{
+        font-size:32px;
+    }
+
+    .container{
+        grid-template-columns:
+        repeat(auto-fill,minmax(180px,1fr));
+    }
+
+    .product img{
+        height:200px;
     }
 }
 
@@ -519,7 +701,6 @@ body{
             Đơn hàng
         </a>
 
-        <!-- FIX CART -->
         <a href="cart.php" id="cartCount" class="cart-menu">
             🛒 Giỏ hàng (<?= isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0 ?>)
         </a>
@@ -674,7 +855,6 @@ body{
 
 </div>
 
-<!-- FIX AJAX -->
 <script>
 
 document.querySelectorAll(".add-cart").forEach(function(btn){
@@ -695,11 +875,9 @@ document.querySelectorAll(".add-cart").forEach(function(btn){
 
             total = total.trim();
 
-            // update cart realtime
             document.getElementById("cartCount").innerHTML =
             "🛒 Giỏ hàng (" + total + ")";
 
-            // toast
             const toast = document.getElementById("toast");
 
             toast.classList.add("show");
