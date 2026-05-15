@@ -56,118 +56,375 @@ if(isset($_POST['register'])){
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="vi">
+
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Đăng ký</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
 
+/* =========================
+   RESET
+========================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
 body{
-    background:#f5f5f5;
-    font-family:Arial;
+
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(135deg,#fff3ee,#fff8f5,#ffffff);
+
+    position:relative;
 }
 
+/* BG EFFECT */
+body::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:420px;
+    height:420px;
+
+    background:
+    rgba(238,77,45,0.12);
+
+    border-radius:50%;
+
+    top:-120px;
+    left:-120px;
+
+    filter:blur(8px);
+}
+
+body::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:350px;
+    height:350px;
+
+    background:
+    rgba(255,115,55,0.12);
+
+    border-radius:50%;
+
+    bottom:-100px;
+    right:-100px;
+
+    filter:blur(8px);
+}
+
+/* =========================
+   REGISTER BOX
+========================= */
 .box{
-    width:360px;
-    background:#fff;
-    margin:100px auto;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+    width:390px;
+
+    background:
+    rgba(255,255,255,0.92);
+
+    backdrop-filter:blur(12px);
+
+    padding:35px;
+
+    border-radius:28px;
+
+    box-shadow:
+    0 20px 45px rgba(0,0,0,0.08);
+
+    position:relative;
+
+    z-index:2;
+
+    animation:fadeUp 0.5s ease;
 }
 
-h2{
-    text-align:center;
-    margin-bottom:20px;
-    color:#333;
+/* ANIMATION */
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:
+        translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+        translateY(0);
+    }
 }
 
-input{
-    width:100%;
-    padding:12px;
-    margin-bottom:15px;
-    border:1px solid #ddd;
-    border-radius:6px;
-    outline:none;
-}
+/* ICON */
+.icon{
 
-input:focus{
-    border-color:#ee4d2d;
-}
+    width:85px;
+    height:85px;
 
-button{
-    width:100%;
-    padding:12px;
-    border:none;
-    background:#ee4d2d;
+    margin:0 auto 18px;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(135deg,#ee4d2d,#ff784e);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:38px;
+
     color:#fff;
-    border-radius:6px;
-    cursor:pointer;
-    font-size:15px;
-    font-weight:bold;
+
+    box-shadow:
+    0 15px 30px rgba(238,77,45,0.22);
 }
 
-button:hover{
-    background:#d73211;
-}
+/* TITLE */
+h2{
 
-.msg{
-    margin-bottom:15px;
     text-align:center;
-    padding:10px;
-    border-radius:6px;
+
+    margin-bottom:25px;
+
+    font-size:32px;
+
+    color:#ee4d2d;
+
+    font-weight:700;
+}
+
+/* MESSAGE */
+.msg{
+
+    margin-bottom:18px;
+
+    text-align:center;
+
+    padding:14px;
+
+    border-radius:14px;
+
     font-size:14px;
+
+    border:
+    1px solid transparent;
 }
 
 .error{
-    background:#ffe5e5;
-    color:#d8000c;
+
+    background:
+    linear-gradient(135deg,#ffeaea,#fff5f5);
+
+    color:#ff0033;
+
+    border-color:
+    rgba(255,0,51,0.1);
 }
 
 .success{
-    background:#e5ffe8;
-    color:#008000;
+
+    background:
+    linear-gradient(135deg,#e9ffef,#f6fff7);
+
+    color:#009933;
+
+    border-color:
+    rgba(0,153,51,0.1);
 }
 
-.link{
-    text-align:center;
-    margin-top:15px;
+/* =========================
+   INPUT
+========================= */
+input{
+
+    width:100%;
+
+    padding:15px 16px;
+
+    margin-bottom:16px;
+
+    border:
+    1px solid #e5e5e5;
+
+    border-radius:16px;
+
+    outline:none;
+
+    font-size:14px;
+
+    transition:0.3s;
+
+    background:#fafafa;
 }
 
-a{
-    text-decoration:none;
-    color:#ee4d2d;
+input:focus{
+
+    border-color:#ee4d2d;
+
+    background:#fff;
+
+    box-shadow:
+    0 0 0 4px rgba(238,77,45,0.08);
+}
+
+/* =========================
+   BUTTON
+========================= */
+button{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    background:
+    linear-gradient(135deg,#ee4d2d,#ff784e);
+
+    color:#fff;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    font-size:16px;
+    font-weight:600;
+
+    transition:0.3s;
+
+    box-shadow:
+    0 12px 24px rgba(238,77,45,0.2);
+}
+
+button:hover{
+
+    transform:
+    translateY(-4px);
+
+    box-shadow:
+    0 18px 30px rgba(238,77,45,0.28);
 }
 
 /* BACK HOME */
 .back-home{
+
     display:block;
+
     text-align:center;
-    margin-top:10px;
-    padding:10px;
-    background:#2d7dff;
+
+    margin-top:14px;
+
+    padding:14px;
+
+    background:
+    linear-gradient(135deg,#2d7dff,#4da3ff);
+
     color:#fff;
-    border-radius:6px;
+
+    border-radius:18px;
+
     text-decoration:none;
+
     font-weight:600;
-    transition:0.2s;
+
+    transition:0.3s;
+
+    box-shadow:
+    0 10px 22px rgba(45,125,255,0.18);
 }
 
 .back-home:hover{
-    background:#1f5ed6;
+
+    transform:
+    translateY(-4px);
+
+    box-shadow:
+    0 16px 28px rgba(45,125,255,0.25);
+}
+
+/* LOGIN LINK */
+.link{
+
+    text-align:center;
+
+    margin-top:22px;
+}
+
+.link a{
+
+    text-decoration:none;
+
+    color:#666;
+
+    font-size:14px;
+
+    transition:0.3s;
+}
+
+.link a:hover{
+
+    color:#ee4d2d;
+}
+
+/* MOBILE */
+@media(max-width:500px){
+
+    body{
+        padding:20px;
+    }
+
+    .box{
+
+        width:100%;
+
+        padding:28px;
+    }
+
+    h2{
+
+        font-size:28px;
+    }
 }
 
 </style>
 
 </head>
+
 <body>
 
 <div class="box">
 
-    <h2>Đăng ký tài khoản</h2>
+    <div class="icon">
+        📝
+    </div>
+
+    <h2>
+        Đăng ký
+    </h2>
 
     <?php if($msg != ""): ?>
 
@@ -181,25 +438,42 @@ a{
 
     <form method="POST">
 
-        <input type="text" name="username" placeholder="Tên đăng nhập">
+        <input
+            type="text"
+            name="username"
+            placeholder="👤 Tên đăng nhập"
+        >
 
-        <input type="password" name="password" placeholder="Mật khẩu">
+        <input
+            type="password"
+            name="password"
+            placeholder="🔑 Mật khẩu"
+        >
 
         <button name="register">
-            Đăng ký
+
+            🚀 Đăng ký tài khoản
+
         </button>
 
     </form>
 
     <!-- BACK HOME -->
     <a class="back-home" href="index.php">
+
         ⬅ Trở về trang chủ
+
     </a>
 
+    <!-- LOGIN -->
     <div class="link">
+
         <a href="login.php">
+
             Đã có tài khoản? Đăng nhập
+
         </a>
+
     </div>
 
 </div>
