@@ -46,7 +46,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $stmt2->execute();
 
         /* =========================
-           3. CẬP NHẬT TỒN KHO (TỐI ƯU)
+           3. CẬP NHẬT TỒN KHO
         ========================== */
 
         $conn->query("
@@ -70,61 +70,283 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Tạo đơn nhập</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
+
+/* =========================
+   RESET
+========================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
 body{
-    font-family:Arial;
-    background:#f5f5f5;
+
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:30px;
+
+    background:
+    linear-gradient(135deg,#eef4ff,#f8fbff,#ffffff);
+
+    overflow:hidden;
+
+    position:relative;
 }
 
-.box{
+/* BG EFFECT */
+body::before{
+
+    content:"";
+
+    position:absolute;
+
     width:420px;
-    margin:60px auto;
-    background:#fff;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    height:420px;
+
+    background:
+    rgba(45,125,255,0.12);
+
+    border-radius:50%;
+
+    top:-120px;
+    right:-120px;
+
+    filter:blur(10px);
 }
 
+body::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:320px;
+    height:320px;
+
+    background:
+    rgba(77,163,255,0.12);
+
+    border-radius:50%;
+
+    bottom:-100px;
+    left:-100px;
+
+    filter:blur(10px);
+}
+
+/* =========================
+   BOX
+========================= */
+.box{
+
+    width:430px;
+
+    background:
+    rgba(255,255,255,0.92);
+
+    backdrop-filter:blur(12px);
+
+    padding:35px;
+
+    border-radius:28px;
+
+    box-shadow:
+    0 20px 45px rgba(0,0,0,0.08);
+
+    position:relative;
+
+    z-index:2;
+
+    animation:fadeUp 0.5s ease;
+}
+
+/* ANIMATION */
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:
+        translateY(25px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+        translateY(0);
+    }
+}
+
+/* TITLE */
 h3{
+
     text-align:center;
-    margin-bottom:20px;
+
+    margin-bottom:25px;
+
+    font-size:30px;
+
+    color:#2d7dff;
+
+    font-weight:700;
 }
 
-input,select{
-    width:100%;
-    padding:12px;
-    margin-bottom:14px;
-    border:1px solid #ddd;
-    border-radius:8px;
-}
-
-button{
-    width:100%;
-    padding:12px;
-    background:linear-gradient(45deg,#2d7dff,#4da3ff);
-    color:#fff;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-}
-
+/* ALERT */
 .alert{
-    background:#ffe8e8;
-    color:red;
-    padding:10px;
-    margin-bottom:10px;
-    border-radius:8px;
+
+    background:
+    linear-gradient(135deg,#ffeaea,#fff5f5);
+
+    color:#ff0033;
+
+    padding:14px;
+
+    margin-bottom:18px;
+
+    border-radius:14px;
+
+    border:
+    1px solid rgba(255,0,51,0.12);
+
+    font-size:14px;
 }
 
-.back{
-    display:block;
-    text-align:center;
-    margin-top:10px;
-    color:#555;
-    text-decoration:none;
+/* =========================
+   FORM
+========================= */
+form{
+
+    display:flex;
+    flex-direction:column;
 }
+
+/* INPUT */
+input,
+select{
+
+    width:100%;
+
+    padding:15px 16px;
+
+    margin-bottom:16px;
+
+    border:
+    1px solid #e5e5e5;
+
+    border-radius:16px;
+
+    outline:none;
+
+    font-size:14px;
+
+    transition:0.3s;
+
+    background:#fafafa;
+}
+
+input:focus,
+select:focus{
+
+    border-color:#2d7dff;
+
+    background:#fff;
+
+    box-shadow:
+    0 0 0 4px rgba(45,125,255,0.08);
+}
+
+/* BUTTON */
+button{
+
+    width:100%;
+
+    padding:16px;
+
+    background:
+    linear-gradient(135deg,#2d7dff,#4da3ff);
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:18px;
+
+    cursor:pointer;
+
+    font-size:16px;
+    font-weight:600;
+
+    transition:0.3s;
+
+    box-shadow:
+    0 12px 24px rgba(45,125,255,0.2);
+}
+
+button:hover{
+
+    transform:
+    translateY(-4px);
+
+    box-shadow:
+    0 18px 30px rgba(45,125,255,0.3);
+}
+
+/* BACK */
+.back{
+
+    display:block;
+
+    text-align:center;
+
+    margin-top:18px;
+
+    color:#666;
+
+    text-decoration:none;
+
+    transition:0.3s;
+
+    font-size:14px;
+}
+
+.back:hover{
+
+    color:#2d7dff;
+
+    transform:
+    translateX(-3px);
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media(max-width:500px){
+
+    .box{
+
+        width:100%;
+
+        padding:28px;
+    }
+
+    h3{
+
+        font-size:24px;
+    }
+}
+
 </style>
 
 </head>
@@ -132,39 +354,72 @@ button{
 
 <div class="box">
 
-    <h3>📥 Tạo đơn nhập</h3>
+    <h3>
+        📥 Tạo đơn nhập
+    </h3>
 
     <?php if($message != ""): ?>
-        <div class="alert"><?= $message ?></div>
+
+        <div class="alert">
+            <?= $message ?>
+        </div>
+
     <?php endif; ?>
 
     <form method="POST">
 
-        <input name="customer" placeholder="Nhà cung cấp" required>
+        <input
+            name="customer"
+            placeholder="🏢 Nhà cung cấp"
+            required
+        >
 
-        <input name="phone" placeholder="Số điện thoại">
+        <input
+            name="phone"
+            placeholder="📞 Số điện thoại"
+        >
 
         <select name="product_id" required>
-            <option value="">-- Chọn sản phẩm --</option>
+
+            <option value="">
+                -- Chọn sản phẩm --
+            </option>
 
             <?php
             $res = $conn->query("SELECT id,name FROM products ORDER BY id DESC");
+
             while($p = $res->fetch_assoc()):
             ?>
-                <option value="<?= $p['id'] ?>">
-                    <?= htmlspecialchars($p['name']) ?>
-                </option>
+
+            <option value="<?= $p['id'] ?>">
+
+                <?= htmlspecialchars($p['name']) ?>
+
+            </option>
+
             <?php endwhile; ?>
 
         </select>
 
-        <input type="number" name="qty" min="1" value="1" required>
+        <input
+            type="number"
+            name="qty"
+            min="1"
+            value="1"
+            required
+        >
 
-        <button type="submit">➕ Tạo đơn</button>
+        <button type="submit">
+            ➕ Tạo đơn nhập
+        </button>
 
     </form>
 
-    <a class="back" href="orders.php?type=nhap">← Quay lại</a>
+    <a class="back" href="orders.php?type=nhap">
+
+        ← Quay lại danh sách đơn
+
+    </a>
 
 </div>
 
