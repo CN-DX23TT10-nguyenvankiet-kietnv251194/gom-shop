@@ -6,7 +6,21 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
+/* =========================
+   TYPE
+========================= */
+
+$type = $_GET['type'] ?? 'ban';
+
+if(!in_array($type,['ban','nhap'])){
+    $type = 'ban';
+}
+
 $message = "";
+
+/* =========================
+   SUBMIT
+========================= */
 
 if($_SERVER['REQUEST_METHOD'] == "POST"){
 
@@ -15,13 +29,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     $product_id = (int)($_POST['product_id'] ?? 0);
     $qty        = (int)($_POST['qty'] ?? 0);
 
+    /* loại đơn */
+    $type = $_POST['type'] ?? 'ban';
+
     if($customer != "" && $product_id > 0 && $qty > 0){
 
         /* =========================
-           1. TẠO ĐƠN NHẬP
+           1. TẠO ĐƠN
         ========================== */
-
-        $type = "nhap";
 
         $stmt = $conn->prepare("
             INSERT INTO orders(customer, phone, type)
@@ -49,14 +64,27 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
            3. CẬP NHẬT TỒN KHO
         ========================== */
 
-        $conn->query("
-            UPDATE products
-            SET stock = stock + $qty
-            WHERE id = $product_id
-        ");
+        if($type == "ban"){
+
+            // bán => trừ kho
+            $conn->query("
+                UPDATE products
+                SET stock = stock - $qty
+                WHERE id = $product_id
+            ");
+
+        }else{
+
+            // nhập => cộng kho
+            $conn->query("
+                UPDATE products
+                SET stock = stock + $qty
+                WHERE id = $product_id
+            ");
+        }
 
         /* DONE */
-        header("Location: orders.php?type=nhap");
+        header("Location: orders.php?type=".$type);
         exit;
 
     }else{
@@ -72,7 +100,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tạo đơn nhập</title>
+<title>Tạo đơn hàng</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
@@ -99,7 +127,7 @@ body{
     padding:30px;
 
     background:
-    linear-gradient(135deg,#eef4ff,#f8fbff,#ffffff);
+    linear-gradient(135deg,#fff8f2,#f5f9ff,#ffffff);
 
     overflow:hidden;
 
@@ -117,7 +145,7 @@ body::before{
     height:420px;
 
     background:
-    rgba(45,125,255,0.12);
+    rgba(238,77,45,0.10);
 
     border-radius:50%;
 
@@ -137,7 +165,7 @@ body::after{
     height:320px;
 
     background:
-    rgba(77,163,255,0.12);
+    rgba(45,125,255,0.10);
 
     border-radius:50%;
 
@@ -198,7 +226,7 @@ h3{
 
     font-size:30px;
 
-    color:#2d7dff;
+    color:#ee4d2d;
 
     font-weight:700;
 }
@@ -259,12 +287,12 @@ select{
 input:focus,
 select:focus{
 
-    border-color:#2d7dff;
+    border-color:#ee4d2d;
 
     background:#fff;
 
     box-shadow:
-    0 0 0 4px rgba(45,125,255,0.08);
+    0 0 0 4px rgba(238,77,45,0.08);
 }
 
 /* BUTTON */
@@ -275,7 +303,7 @@ button{
     padding:16px;
 
     background:
-    linear-gradient(135deg,#2d7dff,#4da3ff);
+    linear-gradient(135deg,#ee4d2d,#ff784e);
 
     color:#fff;
 
@@ -291,7 +319,7 @@ button{
     transition:0.3s;
 
     box-shadow:
-    0 12px 24px rgba(45,125,255,0.2);
+    0 12px 24px rgba(238,77,45,0.2);
 }
 
 button:hover{
@@ -300,7 +328,7 @@ button:hover{
     translateY(-4px);
 
     box-shadow:
-    0 18px 30px rgba(45,125,255,0.3);
+    0 18px 30px rgba(238,77,45,0.3);
 }
 
 /* BACK */
@@ -323,7 +351,7 @@ button:hover{
 
 .back:hover{
 
-    color:#2d7dff;
+    color:#ee4d2d;
 
     transform:
     translateX(-3px);
@@ -355,7 +383,11 @@ button:hover{
 <div class="box">
 
     <h3>
-        📥 Tạo đơn nhập
+
+        <?= $type=='ban'
+        ? '🛒 Tạo đơn bán'
+        : '📥 Tạo đơn nhập' ?>
+
     </h3>
 
     <?php if($message != ""): ?>
@@ -368,17 +400,39 @@ button:hover{
 
     <form method="POST">
 
+        <!-- TYPE -->
+        <select name="type" required>
+
+            <option value="ban"
+                <?= $type=='ban'?'selected':'' ?>>
+
+                🛒 Đơn bán
+
+            </option>
+
+            <option value="nhap"
+                <?= $type=='nhap'?'selected':'' ?>>
+
+                📥 Đơn nhập
+
+            </option>
+
+        </select>
+
+        <!-- CUSTOMER -->
         <input
             name="customer"
-            placeholder="🏢 Nhà cung cấp"
+            placeholder="👤 Tên khách / nhà cung cấp"
             required
         >
 
+        <!-- PHONE -->
         <input
             name="phone"
             placeholder="📞 Số điện thoại"
         >
 
+        <!-- PRODUCT -->
         <select name="product_id" required>
 
             <option value="">
@@ -386,7 +440,11 @@ button:hover{
             </option>
 
             <?php
-            $res = $conn->query("SELECT id,name FROM products ORDER BY id DESC");
+            $res = $conn->query("
+                SELECT id,name
+                FROM products
+                ORDER BY id DESC
+            ");
 
             while($p = $res->fetch_assoc()):
             ?>
@@ -401,6 +459,7 @@ button:hover{
 
         </select>
 
+        <!-- QTY -->
         <input
             type="number"
             name="qty"
@@ -409,13 +468,18 @@ button:hover{
             required
         >
 
+        <!-- BUTTON -->
         <button type="submit">
-            ➕ Tạo đơn nhập
+
+            <?= $type=='ban'
+            ? '🛒 Tạo đơn bán'
+            : '📥 Tạo đơn nhập' ?>
+
         </button>
 
     </form>
 
-    <a class="back" href="orders.php?type=nhap">
+    <a class="back" href="orders.php?type=<?= $type ?>">
 
         ← Quay lại danh sách đơn
 
