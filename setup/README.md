@@ -1,7 +1,7 @@
 HƯỚNG DẪN CÀI ĐẶT WEBSITE MUA BÁN ĐỒ GỐM CŨ
 
 1. Yêu cầu hệ thống
-2. 
+   
 • Windows 10/11
 
 • XAMPP (Apache, MySQL, PHP)
@@ -9,7 +9,7 @@ HƯỚNG DẪN CÀI ĐẶT WEBSITE MUA BÁN ĐỒ GỐM CŨ
 • Trình duyệt web (Chrome, Edge hoặc Firefox)
 
 4. Cài đặt XAMPP
-5. 
+   
 Bước 1: Tải và cài đặt XAMPP.
 
 Bước 2: Mở XAMPP Control Panel.
@@ -17,13 +17,13 @@ Bước 2: Mở XAMPP Control Panel.
 Bước 3: Khởi động Apache và MySQL.
 
 7. Sao chép mã nguồn
-8. 
+   
 Giải nén thư mục dự án và chép thư mục source vào:
 
 C:\xampp\htdocs\gom_cu
 
 10. Tạo cơ sở dữ liệu
-11. 
+    
 Bước 1: Truy cập http://localhost/phpmyadmin
 
 Bước 2: Tạo cơ sở dữ liệu gom_shop.
@@ -35,7 +35,7 @@ Bước 4: Chọn file gom_shop.sql trong thư mục setup.
 Bước 5: Nhấn Go để nhập dữ liệu.
 
 13. Cấu hình kết nối
-14. 
+    
 Kiểm tra file config.php:
 
 $host='localhost';
@@ -47,7 +47,7 @@ $password='';
 $db='gom_shop';
 
 16. Chạy hệ thống
-17. 
+    
 Mở trình duyệt và truy cập:
 
 http://localhost/gom_cu
@@ -55,11 +55,11 @@ http://localhost/gom_cu
 Hoặc thư mục source tương ứng của dự án.
 
 19. Tài khoản mặc định
-20. 
+    
 Đăng nhập bằng tài khoản đã có trong cơ sở dữ liệu hoặc tạo tài khoản mới.
 
 22. Xử lý lỗi thường gặp
-23. 
+    
 Apache không chạy: kiểm tra cổng 80.
 
 MySQL không chạy: kiểm tra cổng 3306.
