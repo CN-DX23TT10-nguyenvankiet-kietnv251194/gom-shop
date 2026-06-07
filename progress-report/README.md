@@ -1,6 +1,6 @@
 Thời gian	Nội dung thực hiện	Kết quả đạt được
 
-19/04/2026 - 22/04/2026	Tìm hiểu tổng quan về đề tài, lựa chọn đề tài và xác định mục tiêu nghiên cứu	Hoàn thành việc lựa chọn đề tài và xây dựng kế hoạch thực hiện
+19/04/2026 - 22/04/2026	Tìm hiểu tổng quan về đề tài, lựa chọn đề tài và xác định mục tiêu nghiên cứu	Hoàn thành việc lựa chọn đề tài và xây dựng kế hoạch thực hiện.
 
 23/04/2026 - 27/04/2026	Nghiên cứu các lý thuyết liên quan: thương mại điện tử, HTML, CSS, JavaScript	Tổng hợp cơ sở lý thuyết phục vụ đề tài
 
