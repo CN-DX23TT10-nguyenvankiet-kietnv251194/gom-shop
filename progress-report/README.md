@@ -20,4 +20,4 @@ Thời gian	Nội dung thực hiện	Kết quả đạt được
 
 30/05/2026 - 31/05/2026	Hoàn thiện báo cáo, rà soát nội dung và chuẩn bị nộp đồ án	Hoàn thành báo cáo và sản phẩm đồ án
 
-Trong xuyên suốt quá trình thực hiện nghiêm cứu chân thành cẩm ơn đến thầy Nguyễn Nhứt Lam, đã hỗ trợ em về mặt kiến thức và nhiều sự góp ý khác để em có thể hoàn thành dự án này một cách suôn sẻ!
+Trong xuyên suốt quá trình thực hiện nghiêm cứu chân thành cẩm ơn đến thầy Nguyễn Nhứt Lam, đã hỗ trợ em về mặt kiến thức và nhiều sự góp ý khác để em có thể hoàn thành dự án này một cách suôn sẻ.
